@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idaitics - AI for Everyone</title>
+    <meta name="description" content="Empowering businesses and consumers with enterprise-grade AI intelligence. Smart POS for retailers and Grokit for household consumers.">
+    
+    <style>
+        :root {
+            --primary-blue: #0078d4;
+            --secondary-white: #ffffff;
+            --accent-orange: #ff8c00;
+            --light-gray: #f3f2f1;
+            --text-dark: #323130;
+            --text-light: #605e5c;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: Georgia, 'Times New Roman', serif;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 2.5rem; font-weight: 700; }
+        h2 { font-size: 2.2rem; font-weight: 600; }
+        h3 { font-size: 1.8rem; font-weight: 500; }
+        h4 { font-size: 1.4rem; font-weight: 500; }
+
+        p { color: var(--text-light); margin-bottom: 1rem; }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--primary-blue);
+            background: rgba(0, 120, 212, 0.1);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 80px 0;
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0078d4 0%, #106ebe 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 0 80px;
+            margin-top: 80px;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .dual-cta {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 300px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-card h3 { color: white; margin-bottom: 1rem; }
+        .cta-card p { color: rgba(255, 255, 255, 0.8); margin-bottom: 1.5rem; }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--accent-orange);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #e67a00;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon {
+            background: var(--accent-orange);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+        }
+
+        /* Forms */
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1dfdd;
+            border-radius: 10px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 { color: white; margin-bottom: 1rem; }
+        .footer-section p { color: #ccc; }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid #555;
+            color: #888;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .dual-cta { flex-direction: column; align-items: center; }
+            .container { padding: 0 1rem; }
+            .nav-menu { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Idaitics</div>
+            <div class="nav-menu">
+                <button class="nav-item active" data-section="home">Home</button>
+                <button class="nav-item" data-section="services">Services</button>
+                <button class="nav-item" data-section="about">About Us</button>
+                <button class="nav-item" data-section="careers">Careers</button>
+                <button class="nav-item" data-section="contact">Contact</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HOME SECTION -->
+    <section id="home" class="section active">
+        <div class="hero">
+            <div class="container">
+                <h1>AI for Everyone</h1>
+                <p class="subtitle">Empowering businesses and consumers with enterprise-grade intelligence</p>
+                <p>Idaitics is a technology company providing AI solutions that make life comfortable for small businesses and the general public</p>
+                
+                <div class="dual-cta">
+                    <div class="cta-card">
+                        <h3>For Retailers</h3>
+                        <p>AI that transforms your business operations simple and efficient</p>
+                        <button class="btn btn-primary" data-section="services">For Retail Business</button>
+                    </div>
+                    <div class="cta-card">
+                        <h3>For Consumers</h3>
+                        <p>Smart solutions that simplify daily life</p>
+                        <button class="btn btn-primary" data-section="services">For Consumers</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding: 80px 0;">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 3rem;">Meet Grokit - Our Flagship Solution</h2>
+                <div class="cards-grid">
+                    <div class="card">
+                        <h3>🏪 Smart POS for Business</h3>
+                        <p>Transform your retail operations with AI-powered point-of-sale intelligence that goes beyond transactions to complete business orchestration.</p>
+                    </div>
+                    <div class="card">
+                        <h3>🍽️ Grokit for Households</h3>
+                        <p>Your personal food intelligence platform that transforms how families plan, shop, cook, and manage their food journey.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="section">
+        <div style="padding: 120px 0 80px;">
+            <div class="container">
+                <h1 style="text-align: center; margin-bottom: 3rem;">Our Services</h1>
+                
+                <div style="margin-bottom: 5rem;">
+                    <h2>💳 Smart POS - Next-Generation Point-of-Sale Intelligence</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem;">Moving beyond simple transaction processing to complete business orchestration</p>
+                    
+                    <h3>Intelligent Retail Operations:</h3>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">👁️</div>
+                            <div>
+                                <h4>Visual Intelligence</h4>
+                                <p>Real-time monitoring of store activity, customer flow, and inventory levels</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">💬</div>
+                            <div>
+                                <h4>Conversational Commerce</h4>
+                                <p>Natural language interactions across your entire business ecosystem</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">📈</div>
+                            <div>
+                                <h4>Predictive Analytics</h4>
+                                <p>Smart forecasting for inventory, demand, and customer behavior</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">⚙️</div>
+                            <div>
+                                <h4>Automated Engagement</h4>
+                                <p>Seamless communication management with customers, staff, and suppliers</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">📢</div>
+                            <div>
+                                <h4>Marketing Intelligence</h4>
+                                <p>Data-driven social media and customer relationship strategies</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🌐</div>
+                            <div>
+                                <h4>360° Business Insights</h4>
+                                <p>Comprehensive operational visibility and performance analytics</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: var(--light-gray); padding: 3rem; border-radius: 20px; margin-bottom: 3rem;">
+                    <h2>🍳 Grokit - Your Personal Food Intelligence</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem;">Transforming how families plan, shop, cook, and manage their food journey</p>
+                    
+                    <h3>Smart Kitchen Management:</h3>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">📅</div>
+                            <div>
+                                <h4>Intelligent Meal Planning</h4>
+                                <p>Smart meal planning and grocery optimization</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🎤</div>
+                            <div>
+                                <h4>Voice-Guided Cooking</h4>
+                                <p>Hands-free cooking assistance with voice guidance</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">💚</div>
+                            <div>
+                                <h4>Nutrition & Budget Tracking</h4>
+                                <p>Nutrition tracking and spending insights</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🌱</div>
+                            <div>
+                                <h4>Waste Reduction</h4>
+                                <p>Predictive shopping lists and waste reduction</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center;">
+                    <button class="btn btn-primary" data-section="contact" style="margin-right: 1rem;">Get Started Today</button>
+                    <button class="btn btn-secondary" data-section="about">Learn More About Us</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section">
+        <div style="padding: 120px 0 80px;">
+            <div class="container">
+                <h1 style="text-align: center; margin-bottom: 3rem;">Building Smart Solutions for Everyone</h1>
+                
+                <div class="card">
+                    <p style="font-size: 1.1rem;">Our founder's journey spans three decades across retail, banking, and technology – from family businesses to corporate environments. This diverse experience revealed an exciting opportunity: bringing the power of intelligent technology to everyday businesses and consumers who could truly benefit from it.</p>
+                    <p style="font-size: 1.1rem;">Having worked with hundreds of businesses and thousands of individuals, we saw how the right technology could transform daily operations and simplify life. Small businesses, busy families, and growing businesses all deserved access to smart solutions that work seamlessly.</p>
+                    <p style="font-size: 1.1rem;"><strong>Idaitics was founded on a simple vision: create AI that's practical, accessible, and genuinely helpful for real people solving real problems.</strong></p>
+                </div>
+
+                <h2>Our Future Vision</h2>
+                <div class="card">
+                    <p>We envision a world where intelligent technology seamlessly integrates into daily life – where small businesses and family-run enterprises have powerful operational intelligence, where families effortlessly manage their household needs, and where AI works quietly in the background to make everyone's life more comfortable and efficient.</p>
+                    <p><strong>Our goal is to make smart technology as natural and essential as electricity</strong> – powering better decisions, smoother operations, and happier lives for everyone.</p>
+                </div>
+
+                <h2>Built by People, For People</h2>
+                <div class="card">
+                    <p>Our team brings together talented professionals with backgrounds spanning technology, finance, retail, and beyond - united by a shared passion for creating meaningful technology that makes life better.</p>
+                    <p>We embrace flexibility and inclusivity, welcoming career changers, returning professionals, and those seeking new challenges in AI. Our team works remotely from across the globe, with flexible arrangements from 10 to 40 hours, because we know great work happens when people can balance their lives.</p>
+                </div>
+
+                <h2>Our Guiding Principles</h2>
+                <div class="cards-grid">
+                    <div class="card">
+                        <h3>🤝 Trust</h3>
+                        <p>We believe in the power of genuine relationships. Whether it's our team working remotely across continents or our customers using our solutions, trust forms the foundation of everything we do.</p>
+                    </div>
+                    <div class="card">
+                        <h3>💡 Innovation</h3>
+                        <p>We're always curious about making life easier. Every feature we build starts with a simple question: "How can we make this feel effortless?"</p>
+                    </div>
+                    <div class="card">
+                        <h3>♿ Accessibility</h3>
+                        <p>Technology should feel like a helpful friend, not a complicated machine. We design for busy parents, hardworking shop owners, and everyone in between.</p>
+                    </div>
+                    <div class="card">
+                        <h3>👥 Community Impact</h3>
+                        <p>Our success is measured by the families who waste less food, the small businesses that run more smoothly, and the communities that thrive together.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAREERS SECTION -->
+    <section id="careers" class="section">
+        <div style="padding: 120px 0 80px;">
+            <div class="container">
+                <h1 style="text-align: center; margin-bottom: 2rem;">Ready for Something Meaningful?</h1>
+                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">Whether you're just starting your career, shifting to something new, or returning after a break - we believe everyone deserves the chance to build something that matters.</p>
+                
+                <div class="card">
+                    <h2>Join Our Journey</h2>
+                    <p>We're looking for curious minds and fresh perspectives who want to create technology that genuinely helps small businesses and families. Your background matters less than your passion for making a difference.</p>
+                </div>
+
+                <h2>Our Environment</h2>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">🌍</div>
+                        <div>
+                            <h4>Work from Anywhere</h4>
+                            <p>At your own pace, with flexible hours</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">❤️</div>
+                        <div>
+                            <h4>Trust-Based Culture</h4>
+                            <p>Where good people thrive</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🧠</div>
+                        <div>
+                            <h4>Learn Cutting-Edge AI</h4>
+                            <p>While solving real problems</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🚀</div>
+                        <div>
+                            <h4>Grow with Technology</h4>
+                            <p>That's changing everyday life</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Apply Now</h2>
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Name *</label>
+                                <input type="text" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email *</label>
+                                <input type="email" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Education</label>
+                                <input type="text">
+                            </div>
+                            <div class="form-group">
+                                <label>Age Range</label>
+                                <select>
+                                    <option>18-25</option>
+                                    <option>26-35</option>
+                                    <option>36-45</option>
+                                    <option>46+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Why Idaitics?</label>
+                            <textarea rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Application</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="section">
+        <div style="padding: 120px 0 80px;">
+            <div class="container">
+                <h1 style="text-align: center; margin-bottom: 3rem;">Let's Connect</h1>
+                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">Whether you're a retail business ready to transform your operations or interested in Grokit for your household, we'd love to hear from you.</p>
+                
+                <div class="cards-grid">
+                    <div class="card">
+                        <h3>🇬🇧 United Kingdom</h3>
+                        <p>B18 5JP, Birmingham, UK</p>
+                        <p>📞 +44 7539149291</p>
+                    </div>
+                    <div class="card">
+                        <h3>🇮🇳 India</h3>
+                        <p>Bharatha Matha Street, East Tambaram, Chennai, India</p>
+                        <p>📞 +91 95000 95958</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Get in Touch</h2>
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Name *</label>
+                                <input type="text" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email *</label>
+                                <input type="email" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="tel">
+                            </div>
+                            <div class="form-group">
+                                <label>Inquiry Type</label>
+                                <select>
+                                    <option>Smart POS for Business</option>
+                                    <option>Grokit Consumer</option>
+                                    <option>Partnership</option>
+                                    <option>General</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Message *</label>
+                            <textarea rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <p><strong>Email:</strong> idaitics@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Idaitics</h3>
+                    <p>AI solutions for small businesses and consumers. Making technology accessible and genuinely helpful for everyone.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>idaitics@gmail.com</p>
+                    <p>UK: +44 7539149291</p>
+                    <p>India: +91 95000 95958</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Solutions</h3>
+                    <p>Smart POS for Business</p>
+                    <p>Grokit for Consumers</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Idaitics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple navigation using event delegation
+        document.addEventListener('click', function(e) {
+            if (e.target.hasAttribute('data-section')) {
+                e.preventDefault();
+                
+                const targetSection = e.target.getAttribute('data-section');
+                
+                // Hide all sections
+                document.querySelectorAll('.section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show target section
+                document.getElementById(targetSection).classList.add('active');
+                
+                // Update navigation
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Find and activate the nav item
+                const navItem = document.querySelector(`.nav-item[data-section="${targetSection}"]`);
+                if (navItem) {
+                    navItem.classList.add('active');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
