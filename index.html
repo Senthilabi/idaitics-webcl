@@ -27,19 +27,21 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            color: var(--text-dark);
+            color: var(--primary-blue);
+            background-color: white;
         }
 
         h1, h2, h3, h4, h5, h6 {
             font-family: Georgia, 'Times New Roman', serif;
             color: var(--primary-blue);
             margin-bottom: 1rem;
+            font-weight: bold;
         }
 
-        h1 { font-size: 2.5rem; font-weight: 700; }
-        h2 { font-size: 2.2rem; font-weight: 600; }
-        h3 { font-size: 1.8rem; font-weight: 500; }
-        h4 { font-size: 1.4rem; font-weight: 500; }
+        h1 { font-size: 2.5rem; font-weight: 800; }
+        h2 { font-size: 2.2rem; font-weight: 700; }
+        h3 { font-size: 1.8rem; font-weight: 600; }
+        h4 { font-size: 1.4rem; font-weight: 600; }
 
         p { color: var(--text-light); margin-bottom: 1rem; }
 
@@ -65,10 +67,14 @@
         }
 
         .logo {
-            font-family: Georgia, 'Times New Roman', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-image {
+            height: 50px;
+            width: auto;
+            max-width: 200px;
         }
 
         .nav-menu {
@@ -80,7 +86,7 @@
         .nav-item {
             background: none;
             border: none;
-            color: var(--text-dark);
+            color: var(--primary-blue);
             font-weight: 500;
             cursor: pointer;
             padding: 0.5rem 1rem;
@@ -132,12 +138,16 @@
             color: white;
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .hero .subtitle {
             font-size: 1.3rem;
             margin-bottom: 2rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: white;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
         .dual-cta {
@@ -149,17 +159,25 @@
         }
 
         .cta-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             padding: 2rem;
             border-radius: 20px;
             max-width: 300px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
-        .cta-card h3 { color: white; margin-bottom: 1rem; }
-        .cta-card p { color: rgba(255, 255, 255, 0.8); margin-bottom: 1.5rem; }
+        .cta-card h3 { 
+            color: var(--primary-blue); 
+            margin-bottom: 1rem; 
+            font-weight: 700;
+        }
+        .cta-card p { 
+            color: var(--text-dark); 
+            margin-bottom: 1.5rem; 
+        }
 
         /* Buttons */
         .btn {
@@ -303,7 +321,9 @@
 <body>
     <header>
         <nav>
-            <div class="logo">Idaitics</div>
+            <div class="logo">
+                <img src="idaiticslogonu.png" alt="i-Daitics Logo" class="logo-image">
+            </div>
             <div class="nav-menu">
                 <button class="nav-item active" data-section="home">Home</button>
                 <button class="nav-item" data-section="services">Services</button>
@@ -320,7 +340,7 @@
             <div class="container">
                 <h1>AI for Everyone</h1>
                 <p class="subtitle">Empowering businesses and consumers with enterprise-grade intelligence</p>
-                <p>Idaitics is a technology company providing AI solutions that make life comfortable for small businesses and the general public</p>
+                <p>i-Daitics is a technology company providing AI solutions that make life comfortable for small businesses and the general public</p>
                 
                 <div class="dual-cta">
                     <div class="cta-card">
@@ -643,7 +663,7 @@
                 </div>
 
                 <div style="text-align: center; margin-top: 3rem;">
-                    <p><strong>Email:</strong> idaitics@gmail.com</p>
+                    <p>Email: idaitics@gmail.com</p>
                 </div>
             </div>
         </div>
@@ -653,7 +673,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Idaitics</h3>
+                    <h3>i-Daitics</h3>
                     <p>AI solutions for small businesses and consumers. Making technology accessible and genuinely helpful for everyone.</p>
                 </div>
                 <div class="footer-section">
@@ -669,7 +689,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Idaitics. All rights reserved.</p>
+                <p>&copy; 2024 i-Daitics. All rights reserved.</p>
             </div>
         </div>
     </footer>
